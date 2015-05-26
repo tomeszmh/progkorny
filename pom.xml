@@ -4,7 +4,7 @@
 	<groupId>hu.unideb.inf</groupId>
 	<artifactId>five-in-a-row</artifactId>
 	<version>1.0</version>
-	<description>A klasszikus amőba játék implementációja</description>
+	<description>The implementation of the classic five in a row game.</description>
 	<name>Five In A Row</name>
 	<packaging>jar</packaging>
 	<inceptionYear>2015</inceptionYear>

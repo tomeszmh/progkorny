@@ -50,7 +50,7 @@ public class Game {
 	 * Sets the player datas, and start the game.
 	 */
 	public void startGame() {
-		setPlayerDatas();		
+		setPlayerDatas();
 	}
 
 	/**
@@ -125,18 +125,12 @@ public class Game {
 	 * 
 	 */
 	public void nextStep(Player player) {
-		try {
-			System.out.println(player.getName() + " kovetkezik!");
-			System.out.println("Sor: ");
-			int i = scanner.nextInt();
-			System.out.println("Oszlop: ");
-			int j = scanner.nextInt();
-			table[i - 1][j - 1] = player.getCode();
-		} catch (Exception e) {
-			logger.info(e.getMessage()
-					+ " Hiba tortent a felhasznaloi adat beovasasa kozben! ");
-			e.printStackTrace();
-		}
+		System.out.println(player.getName() + " kovetkezik!");
+		System.out.println("Sor: ");
+		int i = scanner.nextInt();
+		System.out.println("Oszlop: ");
+		int j = scanner.nextInt();
+		table[i - 1][j - 1] = player.getCode();
 	}
 
 	/**

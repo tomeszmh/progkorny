@@ -101,19 +101,29 @@ public class GameTest {
 		game.scanner = new Scanner(in);
 		game.setPlayerDatas();
 		assertEquals(true, game.player1.getName().equals("Tomi"));
-
 		assertEquals(true, game.player2.getName().equals("Laci"));
 	}
-	
+
+	@Test(expected = java.util.InputMismatchException.class)
+	public void testPlayerDataException() {
+		Game game = new Game();
+		game.player1.setCode(1);
+		game.player2.setCode(2);
+		ByteArrayInputStream in = new ByteArrayInputStream(
+				"Tomi\n".getBytes());
+		game.scanner = new Scanner(in);
+		game.nextStep(game.player1);
+
+	}
+
 	@Test
 	public void testStartGame() {
-		Game game = new Game();	
+		Game game = new Game();
 		ByteArrayInputStream in = new ByteArrayInputStream(
 				"Tomi\nLaci\n".getBytes());
 		game.scanner = new Scanner(in);
 		game.startGame();
 		assertEquals(true, game.player1.getName().equals("Tomi"));
-
 		assertEquals(true, game.player2.getName().equals("Laci"));
 	}
 
