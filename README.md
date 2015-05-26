@@ -1,1 +1,1 @@
-A klasszikus amőba játék implementációja
+The implementation of the classic five in a row game.

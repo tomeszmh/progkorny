@@ -104,6 +104,18 @@ public class GameTest {
 
 		assertEquals(true, game.player2.getName().equals("Laci"));
 	}
+	
+	@Test
+	public void testStartGame() {
+		Game game = new Game();	
+		ByteArrayInputStream in = new ByteArrayInputStream(
+				"Tomi\nLaci\n".getBytes());
+		game.scanner = new Scanner(in);
+		game.startGame();
+		assertEquals(true, game.player1.getName().equals("Tomi"));
+
+		assertEquals(true, game.player2.getName().equals("Laci"));
+	}
 
 	@Test
 	public void toStringTest() {

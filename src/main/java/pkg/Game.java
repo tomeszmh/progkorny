@@ -50,8 +50,7 @@ public class Game {
 	 * Sets the player datas, and start the game.
 	 */
 	public void startGame() {
-		setPlayerDatas();
-		printTable();
+		setPlayerDatas();		
 	}
 
 	/**
@@ -108,14 +107,12 @@ public class Game {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				if (table[i][j] == 0) {
-					printTable();
-					System.out.println("Jatek vege, dontetlen!");
 					return false;
-
 				}
 			}
 
 		}
+		printTable();
 		logger.info("A jatek dontetlennel ert veget, a tablan nincs elhelyezheto lepes.");
 		return true;
 	}
@@ -123,7 +120,8 @@ public class Game {
 	/**
 	 * Adds the player's code to the right position on the table.
 	 * 
-	 * @param player the player who will take the next step
+	 * @param player
+	 *            the player who will take the next step
 	 * 
 	 */
 	public void nextStep(Player player) {

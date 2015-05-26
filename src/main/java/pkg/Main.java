@@ -18,27 +18,24 @@ public class Main {
 		int counter = 0;
 		while (true) {
 			game.printTable();
-			if (counter % 2 == 0) {				
+			if (counter % 2 == 0) {
 				game.nextStep(game.player1);
-				if (game.checkTable(game.player1)) {					
+				if (game.checkTable(game.player1)) {
 					System.out.println("Jatek vege, " + game.player1.getName()
 							+ " nyert!");
 					System.exit(0);
 				}
-				if (game.checkTie())
-					System.exit(0);
 			} else {
-				game.nextStep(game.player2);				
-				if (game.checkTable(game.player2) ) {					
+				game.nextStep(game.player2);
+				if (game.checkTable(game.player2)) {
 					System.out.println("Jatek vege, " + game.player2.getName()
 							+ " nyert!");
 					System.exit(0);
 				}
-				if (game.checkTie())
-					System.exit(0);
 			}
+			if (game.checkTie())
+				System.exit(0);
 			counter++;
-			game.printTable();
 		}
 	}
 }
