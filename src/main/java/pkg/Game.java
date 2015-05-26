@@ -131,6 +131,8 @@ public class Game {
 		System.out.println("Oszlop: ");
 		int j = scanner.nextInt();
 		table[i - 1][j - 1] = player.getCode();
+		logger.debug(player1.getName() + " jatekos lepett a(z) " + i + ". sor "
+				+ j + ". mezőjére.");
 	}
 
 	/**
@@ -160,6 +162,7 @@ public class Game {
 				for (int l = 1; l < 5; l++) {
 					if (!((table[i][j] == table[i][j + l]) && table[i][j] == player
 							.getCode())) {
+
 						break;
 					}
 					counter++;
