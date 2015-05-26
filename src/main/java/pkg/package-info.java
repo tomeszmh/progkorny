@@ -1,8 +1,4 @@
 /**
- * The pkg package contains all class which provides the game functionalities.
- */
-/**
- * @author Tomi
- * 
+ * The pkg package contains all classes which provides the game functionalities.
  */
 package pkg;

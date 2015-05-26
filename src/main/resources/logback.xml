@@ -1,9 +1,5 @@
 <configuration scan="false">
 
-
-
-	<!-- Az állományba csak adott szintű vagy annál magasabb szintű üzeneteket 
-		naplózunk -->
 	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
 		<file>messages.log</file>
 		<append>false</append>
@@ -18,7 +14,6 @@
 
 	<!-- A gyökér logger mindent naplóz (a konzolra és az állományba is) -->
 	<root level="ALL">
-
 		<appender-ref ref="FILE" />
 	</root>
 

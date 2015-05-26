@@ -19,11 +19,11 @@ public class Game {
 	/**
 	 * The starting player of the game.
 	 */
-	public Player player1;
+	public Player player1 = new Player();
 	/**
 	 * The other player of the game.
 	 */
-	public Player player2;
+	public Player player2 = new Player();
 
 	/**
 	 * The game table in a 10*10 integer matrix format.
@@ -33,7 +33,7 @@ public class Game {
 	/**
 	 * Scanner object for the user's I/O operations.
 	 */
-	Scanner scanner;
+	public Scanner scanner = new Scanner(System.in);;
 
 	/**
 	 * Creates an empty game table and fills the matrix with zero elements.
@@ -47,7 +47,15 @@ public class Game {
 	}
 
 	/**
-	 * Prints the game table to the console ouptut.
+	 * Sets the player datas, and start the game.
+	 */
+	public void startGame() {
+		setPlayerDatas();
+		printTable();
+	}
+
+	/**
+	 * Prints the game table to the console output.
 	 */
 	public void printTable() {
 		for (int i = 0; i < 10; i++) {
@@ -75,11 +83,10 @@ public class Game {
 		}
 	}
 
-	/***
-	 * Sets the players datas from the console input.
+	/**
+	 * Set the players datas and starts the game.
 	 */
 	public void setPlayerDatas() {
-		scanner = new Scanner(System.in);
 		player1 = new Player();
 		player2 = new Player();
 		System.out.println("Kerem az elso jatekos nevet!");
@@ -89,6 +96,7 @@ public class Game {
 		player2.setName(scanner.next());
 		player2.setCode(2);
 		logger.info("All players data setted.");
+		logger.info("A jatek elkezdodott!");
 	}
 
 	/**
@@ -100,24 +108,25 @@ public class Game {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				if (table[i][j] == 0) {
+					printTable();
+					System.out.println("Jatek vege, dontetlen!");
 					return false;
+
 				}
 			}
 
 		}
-		logger.info("A játék döntetlennel ért véget, a táblán nincs elhelyezhetõ lépés.");
+		logger.info("A jatek dontetlennel ert veget, a tablan nincs elhelyezheto lepes.");
 		return true;
 	}
 
 	/**
 	 * Adds the player's code to the right position on the table.
 	 * 
-	 * @param player
-	 *            the player who will take the next step
+	 * @param player the player who will take the next step
 	 * 
 	 */
 	public void nextStep(Player player) {
-
 		try {
 			System.out.println(player.getName() + " kovetkezik!");
 			System.out.println("Sor: ");
@@ -126,6 +135,8 @@ public class Game {
 			int j = scanner.nextInt();
 			table[i - 1][j - 1] = player.getCode();
 		} catch (Exception e) {
+			logger.info(e.getMessage()
+					+ " Hiba tortent a felhasznaloi adat beovasasa kozben! ");
 			e.printStackTrace();
 		}
 	}
@@ -153,15 +164,16 @@ public class Game {
 	public boolean searchRight(Player player) {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 6; j++) {
-				int l;
-				for (l = 1; l < 5; l++) {
-					if (!(table[i][j] == table[i][j + l])
-							&& table[i][j] == player.getCode()) {
+				int counter = 0;
+				for (int l = 1; l < 5; l++) {
+					if (!((table[i][j] == table[i][j + l]) && table[i][j] == player
+							.getCode())) {
 						break;
 					}
+					counter++;
 				}
-				if (l == 4) {
-					logger.info(player.getName() + " jobb irányban nyert!");
+				if (counter == 4) {
+					logger.info(player.getName() + " jobb iranyban nyert!");
 					return true;
 				}
 			}
@@ -180,14 +192,15 @@ public class Game {
 	public boolean searchDown(Player player) {
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 10; j++) {
-				int l;
-				for (l = 1; l < 5; l++) {
-					if (!(table[i][j] == table[i + l][j])
-							&& table[i][j] == player.getCode()) {
+				int counter = 0;
+				for (int l = 1; l < 5; l++) {
+					if (!((table[i][j] == table[i + l][j]) && table[i][j] == player
+							.getCode())) {
 						break;
 					}
+					counter++;
 				}
-				if (l == 4) {
+				if (counter == 4) {
 					logger.info(player.getName() + " lefele nyert!");
 					return true;
 				}
@@ -207,15 +220,17 @@ public class Game {
 	public boolean searchLeftBottom(Player player) {
 		for (int i = 0; i < 6; i++) {
 			for (int j = 4; j < 10; j++) {
-				int l;
-				for (l = 1; l < 5; l++) {
-					if (!(table[i][j] == table[i + l][j - l])
-							&& table[i][j] == player.getCode()) {
+				int counter = 0;
+				for (int l = 1; l < 5; l++) {
+
+					if (!((table[i][j] == table[i + l][j - l]) && table[i][j] == player
+							.getCode())) {
 						break;
 					}
+					counter++;
 				}
-				if (l == 4) {
-					logger.info(player.getName() + " bal-le irányban nyert!");
+				if (counter == 4) {
+					logger.info(player.getName() + " bal-le iranyban nyert!");
 					return true;
 				}
 			}
@@ -233,15 +248,16 @@ public class Game {
 	public boolean searchRightBottom(Player player) {
 		for (int i = 0; i < 6; i++) {
 			for (int j = 0; j < 6; j++) {
-				int l;
-				for (l = 1; l < 5; l++) {
-					if (!(table[i][j] == table[i + l][j + l])
-							&& table[i][j] == player.getCode()) {
+				int counter = 0;
+				for (int l = 1; l < 5; l++) {
+					if (!((table[i][j] == table[i + l][j + l]) && table[i][j] == player
+							.getCode())) {
 						break;
 					}
+					counter++;
 				}
-				if (l == 4) {
-					logger.info(player.getName() + " jobb-le irányban nyert!");
+				if (counter == 4) {
+					logger.info(player.getName() + " jobb-le iranyban nyert!");
 					return true;
 				}
 			}
