@@ -87,7 +87,12 @@ public class GameTest {
 
 		ByteArrayInputStream in = new ByteArrayInputStream("1\n1\n".getBytes());
 		game.scanner = new Scanner(in);
-		game.nextStep(game.player1);
+		try {
+			game.nextStep(game.player1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(game.table[0][0], 1);
 	}
 
@@ -104,17 +109,7 @@ public class GameTest {
 		assertEquals(true, game.player2.getName().equals("Laci"));
 	}
 
-	@Test(expected = java.util.InputMismatchException.class)
-	public void testPlayerDataException() {
-		Game game = new Game();
-		game.player1.setCode(1);
-		game.player2.setCode(2);
-		ByteArrayInputStream in = new ByteArrayInputStream(
-				"Tomi\n".getBytes());
-		game.scanner = new Scanner(in);
-		game.nextStep(game.player1);
 
-	}
 
 	@Test
 	public void testStartGame() {

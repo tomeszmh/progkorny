@@ -125,14 +125,22 @@ public class Game {
 	 * 
 	 */
 	public void nextStep(Player player) {
-		System.out.println(player.getName() + " kovetkezik!");
-		System.out.println("Sor: ");
-		int i = scanner.nextInt();
-		System.out.println("Oszlop: ");
-		int j = scanner.nextInt();
-		table[i - 1][j - 1] = player.getCode();
-		logger.debug(player1.getName() + " jatekos lepett a(z) " + i + ". sor "
-				+ j + ". mezőjére.");
+		try {
+			System.out.println(player.getName() + " kovetkezik!");
+			System.out.println("Sor: ");
+			int i = scanner.nextInt();
+			System.out.println("Oszlop: ");
+			int j = scanner.nextInt();
+			table[i - 1][j - 1] = player.getCode();
+			logger.debug(player1.getName() + " jatekos lepett a(z) " + i
+					+ ". sor " + j + ". mezőjére.");
+		} catch (Exception e) {
+			logger.error(player.getName() + " rossz adatot adott meg!");
+			System.out
+					.println("Rossz adatbevitel, kerlek egesz szamot adj meg az [1-10] intervallumban.");
+			scanner = new Scanner(System.in);
+			nextStep(player);
+		}
 	}
 
 	/**
